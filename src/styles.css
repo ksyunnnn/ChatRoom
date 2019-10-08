@@ -76,21 +76,28 @@ aside.menu {
 
 .message .text {
   grid-area: text;
+  white-space: pre-wrap;
 }
 
 .action-tools form {
   display: grid;
-  grid-template-rows: 28px;
+  grid-template-rows: 40px;
   grid-template-columns: 1fr 80px;
   grid-gap: 8px;
 }
 
-input {
+textarea {
   padding: 0.5rem;
   font-size: 0.8rem;
+  resize: none;
 }
 
 button {
   border-radius: 4px;
   font-size: 0.8rem;
+}
+
+button:disabled {
+  opacity: 0.8;
+  color: rgba(45, 45, 45, 0.2);
 }
