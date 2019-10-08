@@ -116,6 +116,7 @@ const App = () => {
   } = useRoom("1");
 
   const messageInput = useInput("");
+  const textareaEl = useRef(null);
 
   const [submittable, setSubmittable] = useState(false);
   useEffect(() => {
@@ -144,7 +145,13 @@ const App = () => {
       <div className="card">
         <aside className="menu">
           {data.rooms.map(v => (
-            <li key={v.id} onClick={() => selectCurrentRoom(v.id)}>
+            <li
+              key={v.id}
+              onClick={() => {
+                selectCurrentRoom(v.id);
+                textareaEl.current.focus();
+              }}
+            >
               {v.name}
             </li>
           ))}
@@ -161,7 +168,11 @@ const App = () => {
 
             <div className="action-tools">
               <form onSubmit={submitForm}>
-                <textarea {...messageInput} onKeyDown={enterSubmit} />
+                <textarea
+                  {...messageInput}
+                  onKeyDown={enterSubmit}
+                  ref={textareaEl}
+                />
                 <button disabled={!submittable}>submit</button>
               </form>
             </div>
